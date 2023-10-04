@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 //create users model
 class Users extends Model {}
@@ -23,7 +23,16 @@ Users.init(
             allowNull: false
         },
         created_at: {
-            type: DataTypes.TIME
+            type: DataTypes.DATE
         }
+    },
+    {
+        sequelize,
+        timestamps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'location'
     }
-)
+);
+
+module.exports = Users;
