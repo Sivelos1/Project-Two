@@ -40,7 +40,7 @@ Projects.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'location'
+        modelName: 'projects'
     }
 )
 
