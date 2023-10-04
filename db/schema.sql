@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS showcase_db;
+CREATE DATABASE showcase_db;
