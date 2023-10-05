@@ -42,6 +42,6 @@ Projects.init(
         underscored: true,
         modelName: 'projects'
     }
-)
+);
 
 module.exports = Projects;

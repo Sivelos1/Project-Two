@@ -43,6 +43,6 @@ Media.init(
         underscored: true,
         modelName: 'media'
     }
-)
+);
 
 module.exports = Media;
