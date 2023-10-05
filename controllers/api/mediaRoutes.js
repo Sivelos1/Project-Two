@@ -39,8 +39,16 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     //creates new media
-    
-    res.status(200);
+    try {
+        var mediaInfo = await Project.create({
+            url: req.body.url,
+            metadata: JSON.parse(req.body),
+            uploader_id: req.session.user_id,
+        });
+        res.status(200).json(mediaInfo);
+    } catch (error) {
+        res.status(500).json(error);
+    }
 });
 
 router.put('/:id', async (req, res) => {
