@@ -1,10 +1,37 @@
-<header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/profile">Profile</a></li>
-            <li id="logout"><a href="#">Logout</a></li> <!-- This can be hidden/shown based on login status -->
-        </ul>
-    </nav>
+<header class="header">
+    <div class="hamburger-container">
+        <button class="hamburger-button">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </button>
+    </div>
+    <div class="nav-container">  
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li id="logout"><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+
+<script> 
+document.addEventListener("DOMContentLoaded", function () {
+    const hamburgerButton = document.querySelector('.hamburger-button');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburgerButton.addEventListener('click', function () {
+        hamburgerButton.classList.toggle('is-active');
+        navMenu.classList.toggle('is-active');
+        navMenu.style.display = navMenu.classList.contains('is-active') ? 'flex' : 'none'; // Added this line to fix the menu display issue
+    });
+});
+
+console.log("hello world");
+
+</script>
+
 </header>
+
