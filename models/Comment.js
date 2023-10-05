@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Comment extends Model {}
 
-Media.init(
+Comment.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -34,6 +34,13 @@ Media.init(
         created_at: {
             type: DataTypes.DATE
         }
+    },
+    {
+        sequelize,
+        timestamps: true,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'comment'
     }
-
+);
 module.exports = Comment;
