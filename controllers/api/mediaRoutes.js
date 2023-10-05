@@ -39,6 +39,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     //creates new media
+    
     res.status(200);
 });
 
