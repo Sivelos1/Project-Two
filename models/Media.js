@@ -19,6 +19,18 @@ Media.init(
                 unique: false
             }
         },
+        uploader_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'Users',
+                key: 'id',
+                unique: false
+            }
+        },
+        metadata:{
+            type: DataTypes.JSON,
+            allowNull: false
+        },
         url: {
             type: DataTypes.TEXT,
             allowNull: false
