@@ -1,23 +1,48 @@
 const express = require('express');
 const router = express.Router();
+const { Media, Project } = require('../../models')
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     //returns all media
     //arguments could return media for specific project?
-    res.status(200);
+    try {
+        var mediaInfo = null;
+        if(req.body.projectID){
+            mediaInfo = await Media.findAll({
+                where:{
+                    parent: req.body.projectID
+                }
+            });
+        }
+        else{
+            mediaInfo = await Media.findAll();
+        }
+        if(mediaInfo){
+            const m = mediaInfo.map((media) => media.get({plain: true}));
+            res.status(200).json(m);
+        }
+    } catch (error) {
+        res.status(400).json(error);
+    }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     //returns single media based on id
     res.status(200);
+    try {
+        var mediaInfo = await Media.findByPk(req.params.id);
+        res.status(200).json(mediaInfo.get({plain: true}));
+    } catch (error) {
+        res.status(400).json(error);
+    }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     //creates new media
     res.status(200);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     //updates single media
     res.status(200);
 });
