@@ -1,7 +1,7 @@
-const Projects = require('./Projects');
-const Users = require('./Users');
-const Comment = require('./Comment');
-const Media = require('./Media');
+const Projects = require('./Projects.js');
+const Users = require('./Users.js');
+const Comment = require('./Comment.js');
+const Media = require('./Media.js');
 
 Users.hasMany(Comment, {
     foreignKey: 'user_id',
@@ -23,4 +23,4 @@ Projects.hasMany(Media, {
     onDelete: 'CASCADE',
 });
 
-module.exports = {Projects, Media, Users, Comment};
+module.exports = { Projects, Media, Users, Comment };

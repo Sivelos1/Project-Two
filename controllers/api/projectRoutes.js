@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Project } = require('../../controllers');
+const { Project } = require('../../models');
 
 router.get('/', async (req, res) => {
     //returns all projects (maybe there could be arguments that make it so you can get all projects of a certain user?)
