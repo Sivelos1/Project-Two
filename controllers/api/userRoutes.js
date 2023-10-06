@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
             res.status(200).json(p);
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
@@ -24,6 +25,7 @@ router.get('/:id', async (req, res) => {
             res.status(200).json(p);
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
@@ -39,6 +41,7 @@ router.post('/', async (req, res) => {
         });
         res.status(200).json(userInfo);
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
@@ -60,6 +63,7 @@ router.put('/:id', async (req, res) => {
             res.status(404).json({message: 'Couldn\'t find user!'})
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
@@ -78,6 +82,7 @@ router.delete('/:id', async (req, res) => {
         }
         res.status(200).json(data);
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
     res.status(200);

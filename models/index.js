@@ -22,3 +22,5 @@ Projects.hasMany(Media, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE',
 });
+
+module.exports = {Projects, Media, Users, Comment};

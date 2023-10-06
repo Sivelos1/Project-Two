@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
             res.status(200).json(m);
         }
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
     }
 });
@@ -33,6 +34,7 @@ router.get('/:id', async (req, res) => {
         var mediaInfo = await Media.findByPk(req.params.id);
         res.status(200).json(mediaInfo.get({plain: true}));
     } catch (error) {
+        console.log(error);
         res.status(400).json(error);
     }
 });
@@ -47,6 +49,7 @@ router.post('/', async (req, res) => {
         });
         res.status(200).json(mediaInfo);
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
