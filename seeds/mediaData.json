@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "project_id": 1,
         "uploader_id": 1,
         "metadata": {
@@ -10,6 +11,7 @@
         "url": "https://example.com/media1.jpg"
     },
     {
+        "id": 2,
         "project_id": 2,
         "uploader_id": 2,
         "metadata": {
