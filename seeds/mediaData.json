@@ -1,0 +1,22 @@
+[
+    {
+        "project_id": 1,
+        "uploader_id": 1,
+        "metadata": {
+            "type": "image",
+            "resolution": "1080x1920",
+            "format": "jpg"
+        },
+        "url": "https://example.com/media1.jpg"
+    },
+    {
+        "project_id": 2,
+        "uploader_id": 2,
+        "metadata": {
+            "type": "video",
+            "duration": "2m30s",
+            "format": "mp4"
+        },
+        "url": "https://example.com/media2.mp4"
+    }
+]
