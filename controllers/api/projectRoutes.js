@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const { Project } = require('../../models');
+const { Projects } = require('../../models');
 
 router.get('/', async (req, res) => {
     //returns all projects (maybe there could be arguments that make it so you can get all projects of a certain user?)
     try {
         var projInfo;
         if(req.body.userID){
-            projInfo = await Project.findAll({
+            projInfo = await Projects.findAll({
                 where:{
                     user_id: req.body.userID
                 }
             });
         }
         else{
-            projInfo = await Project.findAll();
+            projInfo = await Projects.findAll();
         }
         if(projInfo){
             const p = await projInfo.map((project) => project.get({plain: true}));
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     //returns single project based on id
     try {
-        var projInfo = await Project.findByPk(req.params.id);
+        var projInfo = await Projects.findByPk(req.params.id);
         if(projInfo){
             const p = projInfo.get({plain: true});
             res.status(200).json(p);
@@ -43,7 +43,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     //creates new project
     try {
-        var projInfo = await Project.create({
+        var projInfo = await Projects.create({
             title: req.body.title,
             body: req.body.body,
             user_id: req.body.user_id,
@@ -60,7 +60,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     //updates single project
     try {
-        var projInfo = await Project.findByPk(req.params.id);
+        var projInfo = await Projects.findByPk(req.params.id);
         if(projInfo){
             await projInfo.update({
                 title: req.body.title || projInfo.title,
@@ -86,7 +86,7 @@ router.delete('/:id', async (req, res) => {
         var data = null;
         if(req.body.trueDelete){
             //actually deletes entry
-            data = await Project.destroy({
+            data = await Projects.destroy({
                 where: {
                     id: req.params.id,
                 },
@@ -94,7 +94,7 @@ router.delete('/:id', async (req, res) => {
         }
         else{
             //marks entry as soft-deleted
-            data = await Project.update({
+            data = await Projects.update({
                 status: 'deleted',
             })
         }
