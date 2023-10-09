@@ -1,5 +1,39 @@
-<section>
-    <h1>Welcome to MyFolio.com</h1>
-    <p>Showcase your professional portfolio, discover, and connect with talents globally.</p>
-    <a href="/register" class="btn">Join Now</a>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFolio</title>
+    <link rel="stylesheet" href="/css/mainpage_style.css">
+    <link rel="stylesheet" href="/css/jass.css">
+</head>
+
+<main class="home-container">
+    <section class="hero-section">
+        <section class="slogan">
+            <p>Your Professional Sharing Platform</p>
+            <div class="cta-buttons">
+                <a href="/login" class="button" id="login-button">Login</a>
+                <a href="/register" class="button" id="register-button">Create Account</a>
+            </div>
+        </section>
+    </section>
+</main>
+
+<script>
+// Add event listeners to the "Login" and "Create Account" buttons
+const loginButton = document.getElementById('login-button');
+const registerButton = document.getElementById('register-button');
+
+loginButton.addEventListener('click', () => {
+    // Redirect to the login page (e.g., '/login')
+    window.location.href = '/login';
+});
+
+registerButton.addEventListener('click', () => {
+    // Redirect to the registration page (e.g., '/register')
+    window.location.href = '/register';
+});
+
+
+</script>
