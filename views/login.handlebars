@@ -17,21 +17,21 @@
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
                     </span>
-                    <input type="email" required>
+                    <input type="email" required  class = "login" id = "login-email">
                     <label>Email</label>
                 </div>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="lock-closed"></ion-icon>
                     </span>
-                    <input type="password" required>
+                    <input type="password" required  class = "login" id = "login-pw">
                     <label>Password</label>
                 </div>
                 <div class="remember-forgot">
                     <label><input type="checkbox"> Remember me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn" class = "login">Login</button>
                 <div class="login-register">
                     <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
                 </div>
@@ -45,27 +45,27 @@
                     <span class="icon">
                         <ion-icon name="person"></ion-icon>
                     </span>
-                    <input type="text" required>
+                    <input type="text" required class = "register" id = "register-username">
                     <label>Username</label>
                 </div>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
                     </span>
-                    <input type="email" required>
+                    <input type="email" required class = "register" id = "register-email">
                     <label>Email</label>
                 </div>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="lock-closed"></ion-icon>
                     </span>
-                    <input type="password" required>
+                    <input type="password" required class = "register" id = "register-pw">
                     <label>Password</label>
                 </div>
                 <div class="remember-forgot">
                     <label><input type="checkbox"> I agree to the terms & conditions</label>
                 </div>
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn" id = "register-btn">Register</button>
                 <div class="login-register">
                     <p>Already have an account? <a href="#" class="login-link">Login</a></p>
                 </div>
@@ -112,6 +112,27 @@
         wrapper.classList.remove('active');
     });
 
+    const login_username = document.querySelector('#login-username');
+    const login_pw = document.querySelector('#login-pw');
+
+    const loginForm = function(event){
+        event.preventDefault();
+        const response = await fetch('/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('Failed to log in');
+        }
+    }
+    
+    const register_email = document.querySelector('#register-email');
+    const register_username = document.querySelector('#register-username');
+    const register_pw = document.querySelector('#register-pw');
 
 </script>
 
