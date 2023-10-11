@@ -31,7 +31,7 @@
                     <label><input type="checkbox"> Remember me</label>
                     <a href="#">Forgot Password?</a>
                 </div>
-                <button type="submit" class="btn" class = "login">Login</button>
+                <button type="submit" class="btn" id = "login-btn">Login</button>
                 <div class="login-register">
                     <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
                 </div>
@@ -114,8 +114,38 @@
 
     const login_username = document.querySelector('#login-username');
     const login_pw = document.querySelector('#login-pw');
+    const login_submit = document.querySelector('#login-btn');
 
     const loginForm = function(event){
+        event.preventDefault();
+
+        const username = login_username.value.trim();
+        const pw = login_pw.value.trim();
+
+        if(username && pw){    
+            const response = await fetch('/api/users/login', {
+                method: 'POST',
+                body: JSON.stringify({ username, pw }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+            if (response.ok) {
+                document.location.replace('/');
+            } else {
+                alert('Failed to log in');
+            }
+        }
+
+    }
+
+    login_username.addEventListener('submit', loginForm);
+    login_pw.addEventListener('submit', loginForm);
+    login_submit.addEventListener('click', loginForm);
+    
+    const register_email = document.querySelector('#register-email');
+    const register_username = document.querySelector('#register-username');
+    const register_pw = document.querySelector('#register-pw');
+
+    const registerForm = function(event){
         event.preventDefault();
         const response = await fetch('/api/users/login', {
             method: 'POST',
@@ -129,10 +159,6 @@
             alert('Failed to log in');
         }
     }
-    
-    const register_email = document.querySelector('#register-email');
-    const register_username = document.querySelector('#register-username');
-    const register_pw = document.querySelector('#register-pw');
 
 </script>
 
