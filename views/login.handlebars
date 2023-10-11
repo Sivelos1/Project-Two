@@ -63,7 +63,7 @@
                     <label>Password</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox"> I agree to the terms & conditions</label>
+                    <label><input type="checkbox" id = "agreement"> I agree to the terms & conditions</label>
                 </div>
                 <button type="submit" class="btn" id = "register-btn">Register</button>
                 <div class="login-register">
@@ -79,21 +79,23 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-    // This should be set dynamically based on the value received from the server
-    const autoLogin = true; // Set this value based on the server's response
-
-    if (autoLogin) {
-        btnPopup.click();
-    }
-    });
-
-
+    
     const wrapper = document.querySelector('.wrapper');
     const loginLink = document.querySelector('.login-link');
     const registerLink = document.querySelector('.register-link');
     const btnPopup = document.querySelector('.btnLogin-popup');
     const iconClose = document.querySelector('.icon-close');
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+    // This should be set dynamically based on the value received from the server
+    const autoLogin = true; // Set this value based on the server's response
+
+    /*if (autoLogin) {
+        btnPopup.click();
+    }*/
+    });
+
+
 
     registerLink.addEventListener('click', ()=> {
         wrapper.classList.add('active');
@@ -103,20 +105,20 @@
         wrapper.classList.remove('active');
     });
 
-    btnPopup.addEventListener('click', ()=> {
+    /*btnPopup.addEventListener('click', ()=> {
         wrapper.classList.add('active-popup');
-    });
+    });*/
 
-    iconClose.addEventListener('click', ()=> {
+    /*iconClose.addEventListener('click', ()=> {
         wrapper.classList.remove('active-popup');
         wrapper.classList.remove('active');
-    });
+    });*/
 
-    const login_username = document.querySelector('#login-username');
+    const login_username = document.querySelector('#login-email');
     const login_pw = document.querySelector('#login-pw');
     const login_submit = document.querySelector('#login-btn');
 
-    const loginForm = function(event){
+    const loginForm = async function(event){
         event.preventDefault();
 
         const username = login_username.value.trim();
@@ -125,7 +127,9 @@
         if(username && pw){    
             const response = await fetch('/api/users/login', {
                 method: 'POST',
-                body: JSON.stringify({ username, pw }),
+                body: JSON.stringify({ 
+                    email: username, 
+                    password: pw }),
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
@@ -144,22 +148,41 @@
     const register_email = document.querySelector('#register-email');
     const register_username = document.querySelector('#register-username');
     const register_pw = document.querySelector('#register-pw');
+    const register_contract = document.querySelector('#agreement');
+    const register_submit = document.querySelector('#register-btn');
 
-    const registerForm = function(event){
+    const registerForm = async function(event){
         event.preventDefault();
-        const response = await fetch('/api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' },
-        });
 
-        if (response.ok) {
-            document.location.replace('/');
-        } else {
-            alert('Failed to log in');
+        const email = register_email.value.trim();
+        const username = register_username.value.trim();
+        const pw = register_pw.value.trim();
+
+        if(email && username && pw){    
+            const response = await fetch('/api/users/', {
+            method: 'POST',
+            body: JSON.stringify({ 
+                email: email,
+                username: username,
+                role: "User",
+                password: pw,
+                created_at: Date.now()
+                }),
+            headers: { 'Content-Type': 'application/json' },
+            });
+            if (response.ok) {
+                document.location.replace('/');
+            } else {
+                alert('Failed to sign up');
+            }
+            
         }
     }
 
+    register_email.addEventListener('submit', registerForm);
+    register_username.addEventListener('submit', registerForm);
+    register_pw.addEventListener('submit', registerForm);
+    register_submit.addEventListener('click', registerForm);
 </script>
 
 </html>

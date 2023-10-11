@@ -34,12 +34,17 @@ router.post('/', async (req, res) => {
     //creates new user
     try {
         var userInfo = await Users.create({
+            email: req.body.email,
             username: req.body.username,
-            role: req.body.role,
+            role: req.body.role || "User",
             password: req.body.password,
-            created_at: req.body.created_at
+            created_at: req.body.created_at || Date.now()
         });
-        res.status(200).json(userInfo);
+        req.session.save(() => {
+            req.session.user_id = userInfo.id;
+            req.session.logged_in = true;
+            res.status(200).json(userInfo);
+          });
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
