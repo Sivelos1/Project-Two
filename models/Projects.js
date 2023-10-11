@@ -19,6 +19,12 @@ Projects.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        summary: {
+            type: DataTypes.STRING,
+        },
+        thumbnail: {
+            type: DataTypes.INTEGER,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
