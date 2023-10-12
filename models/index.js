@@ -17,23 +17,23 @@ Projects.belongsTo(Users, {
     foreignKey: 'user_id',
 });
 
-Projects.hasMany(Comment, {
+/*Projects.hasMany(Comment, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE',
-});
+});*/
 
 Projects.hasMany(Media, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE',
 });
 
-Comment.belongsTo(Projects, {
+/*Comment.belongsTo(Projects, {
     foreignKey: 'project_id'
 });
 
 Comment.belongsTo(Users, {
     foreignKey: 'user_id'
-});
+});*/
 
 Media.belongsTo(Projects,{
     foreignKey: 'project_id'
