@@ -42,7 +42,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
             }
         }
     } catch (error) {
-        res.status(500).replace('error');
+        console.log(error);
+        res.status(500).json(error);
     }
     
 })
@@ -71,7 +72,8 @@ router.get('/project/:id', async (req, res) => {
             }*/
         }
     } catch (error) {
-        res.status(500).replace('error');
+        console.log(error);
+        res.status(500).json(error);
     }
     
 })
@@ -102,7 +104,8 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }*/
         }
     } catch (error) {
-        res.status(500).replace('error');
+        console.log(error);
+        res.status(500).json(error);
     }
     
 })
@@ -125,7 +128,8 @@ router.post('/project/new', withAuth, async (req, res) => {
             res.status(500).replace('error');
         }
     } catch (error) {
-        res.status(500).replace('error');
+        console.log(error);
+        res.status(500).json(error);
     }
     
 })
