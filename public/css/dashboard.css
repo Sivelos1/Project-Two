@@ -1,0 +1,166 @@
+/* Reset some default styling */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container */
+#profile-container {
+    max-width: 800px;
+    margin: 100px auto 0;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    position: relative; 
+    padding-top: 50px; 
+    padding-right: 50px; 
+}
+
+/* Profile */
+.profile {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-pic {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile h2 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.profile p {
+    color: #666;
+}
+
+/* Portfolio */
+.portfolio {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.portfolio h2, .post h2 {
+    color: #333;
+}
+
+.portfolio ul {
+    list-style: none;
+}
+
+.portfolio li {
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.portfolio li a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Post */
+.post {
+    padding: 20px;
+}
+
+.post textarea {
+    width: calc(100% - 20px);
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.post button {
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.post button:hover {
+    background: #555;
+}
+
+.post ul {
+    list-style: none;
+}
+
+.post li {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.post li p {
+    margin: 0;
+}
+
+.post li a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* File Input */
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+/* Hamburger Menu */
+.menu-icon .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #333;
+}
+
+.hamburger-menu {
+    position: absolute; 
+    top: 10px; 
+    right:10px; 
+    z-index: 1000; 
+}
+
+/* Dropdown menu content styling */
+.menu-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1001; 
+}
+
+.menu-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-content li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-content li:hover {
+    background-color: #eee;
+}

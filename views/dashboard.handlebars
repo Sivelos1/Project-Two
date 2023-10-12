@@ -1,4 +1,116 @@
-{{!--  This page should house the user's account info, their projects, and other such information.
+<html lang="en">
 
-    Ideas:
-        - This could be the place where you create new projects. It could also be in the header, if the user is logged in?  --}}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+    <div id="profile-container"></div>
+
+    <script id="profile-template" type="text/x-handlebars-template">
+      <div class="profile">
+        <img src="{{avatar}}" alt="{{name}}" class="profile-pic">
+        <h2>{{name}}</h2>
+        <p>{{bio}}</p>
+    </div>
+
+    <div class="hamburger-menu">
+        <div id="menu-button" class="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div id="menu-content" class="menu-content">
+            <ul>
+                <li><a href="#" id="addProject">Add Project</a></li>
+                <li><a href="#" id="deleteAccount">Delete Account</a></li>
+                <li><a href="#" id="changePassword">Change Password</a></li>
+                <li><a href="#" id="changeInfo">Change Personal Info</a></li>
+            </ul>
+        </div>
+    </div>
+        <div class="portfolio">
+            <h2>Portfolio</h2>
+            <input type="file" id="fileInput">
+            <ul id="fileList">
+                {{#each files}}
+                <li><a href="{{this}}" target="_blank">{{this}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="post">
+            <h2>Share a Post</h2>
+            <textarea id="postContent" placeholder="Write something..."></textarea>
+            <input type="file" id="postFile">
+            <button onclick="sharePost()">Share</button>
+            <ul id="postsList">
+                {{#each posts}}
+                <li>
+                    <p>{{this.content}}</p>
+                    {{#if this.file}}
+                    <a href="{{this.file}}" target="_blank">View Attachment</a>
+                    {{/if}}
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.getElementById('menu-button');
+            const menuContent = document.getElementById('menu-content');
+
+            menuButton.onclick = function () {
+                const isMenuOpen = menuContent.style.display === 'block';
+                menuContent.style.display = isMenuOpen ? 'none' : 'block';
+            };
+
+            
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const source = document.getElementById('profile-template').innerHTML;
+            const template = Handlebars.compile(source);
+
+            const context = {
+                name: 'John Doe',
+                avatar: 'https://i.pravatar.cc/150',
+                bio: 'Web Developer with over 5 years of experience.',
+                files: ['/path/to/file1.pdf', '/path/to/project.zip'],
+                posts: [
+                    { content: 'This is a test post.', file: '/path/to/attachment.jpg' },
+                    { content: 'Another post without attachment.' }
+                ]
+            };
+
+            document.getElementById('profile-container').innerHTML = template(context);
+        });
+
+        function sharePost() {
+            const content = document.getElementById('postContent').value;
+            const fileInput = document.getElementById('postFile');
+            const file = fileInput.files.length > 0 ? fileInput.files[0].name : null;
+
+            const post = { content, file };
+            const source = '<li><p>{{content}}</p>{{#if file}}<a href="{{file}}" target="_blank">View Attachment</a>{{/if}}</li>';
+            const template = Handlebars.compile(source);
+
+            document.getElementById('postsList').innerHTML += template(post);
+            document.getElementById('postContent').value = '';  // Clear the textarea
+            fileInput.value = '';  // Clear the file input
+        }
+    </script>
+
+
+</body>
+
+</html>
