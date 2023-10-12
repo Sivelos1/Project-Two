@@ -7,3 +7,35 @@ comment display.
         Maybe both, if the user doesn't upload a thumbnail?
         - A setting for displaying comments? Maybe one for disabling comments, too. I dunno, we can brainstorm once we get the 
         main stuff working  --}}
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFolio</title>
+    <link rel="stylesheet" href="/css/mainpage_style.css">
+    <link rel="stylesheet" href="/css/jass.css">
+    <link rel="stylesheet" href="/css/mde.css">
+</head>
+
+<div style = "margin-top: 7.5rem; display:flex; justify-content:center">
+    <div>
+        <form>
+            <div>
+                <label>Title</label>
+                <input type = "text" id = "project-title">
+            </div>
+            <div>
+                <textarea id = "project-body" style = "width: 100%"></textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+
+<script>
+    const projectBody = document.querySelector('#project-body');
+    const easyMDE = new EasyMDE({element: projectBody});
+</script>

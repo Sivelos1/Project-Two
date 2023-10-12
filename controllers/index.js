@@ -70,6 +70,34 @@ router.get('/project/:id', async (req, res) => {
     
 })
 
+router.get('/projectedit', async (req,res) => {
+    res.render('edit-project');
+})
+
+router.get('/project/:id/edit', withAuth, async (req, res) => {
+    try {
+        const projectInfo = Projects.findOne({
+            where:{
+                user_id: req.params.id
+            }
+        });
+        if(projectInfo){
+            if(projectInfo.user_id === req.session.user_id){
+                res.status(200).render('edit-project', {
+                    projectInfo: projectInfo
+                });
+            }
+            else{
+                console.log("Access denied; user is not the author of project "+req.params.id+".");
+                res.status(401).redirect('/project/'+req.params.id).json({message:"Access denied."});
+            }
+        }
+    } catch (error) {
+        res.status(500).render('error');
+    }
+    
+})
+
 
 
 module.exports = router;
