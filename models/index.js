@@ -39,4 +39,4 @@ Media.belongsTo(Projects,{
     foreignKey: 'project_id'
 });
 
-module.exports = { Projects, Media, Users, Comment };
+module.exports = { Projects, Media, Users};
