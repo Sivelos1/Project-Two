@@ -58,7 +58,7 @@ comment display.
     const projectBody = document.querySelector('#project-body');
     const easyMDE = new EasyMDE({
         element: projectBody,
-        placeholder: "Write something about your project!"
+        placeholder: "Write something about your project!",
         maxHeight: "20rem",
         maxWidth: "100%"
         });
@@ -67,6 +67,5 @@ comment display.
 
     const saveProjectHandler = async function(event){
         event.preventDefault();
-        const response = await fetch(`/api/projects/`)
     }
 </script>
