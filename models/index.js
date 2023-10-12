@@ -1,12 +1,12 @@
 const Projects = require('./Projects.js');
 const Users = require('./Users.js');
-const Comment = require('./Comment.js');
+//const Comment = require('./Comment.js');
 const Media = require('./Media.js');
 
-Users.hasMany(Comment, {
+/*Users.hasMany(Comment, {
     foreignKey: 'user_id',
     onDelete: 'CASCADE',
-});
+});*/
 
 Users.hasMany(Projects, {
     foreignKey: 'user_id',
