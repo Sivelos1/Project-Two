@@ -67,7 +67,7 @@ router.get('/project/:id', async (req, res) => {
             }*/
         }
     } catch (error) {
-        res.status(500).render('error');
+        res.status(500).redirect('error');
     }
     
 })
@@ -98,7 +98,7 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }*/
         }
     } catch (error) {
-        res.status(500).render('error');
+        res.status(500).redirect('error');
     }
     
 })
@@ -117,14 +117,17 @@ router.post('/project/new', withAuth, async (req, res) => {
             res.status(200).redirect(`/project/${newProj.id}/edit`);
         }
         else{
-            res.status(500).render('error');
+            res.status(500).redirect('error');
         }
     } catch (error) {
-        res.status(500).render('error');
+        res.status(500).redirect('error');
     }
     
 })
 
+router.get('/error', async (req, res) => {
+    res.render('error');
+})
 
 
 module.exports = router;
