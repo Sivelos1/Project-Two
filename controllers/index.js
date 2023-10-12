@@ -3,6 +3,7 @@ const router = express.Router();
 const apiRoutes = require('./api');
 const withAuth = require('../utils/auth');
 const { init } = require('filestack-js');
+const {Users, Projects, Comment, Media} = require('../models');
 
 
 router.get('/', (req, res) => {
@@ -14,7 +15,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 router.get('/profile', withAuth, async (req, res) => {
-    const userInfo = await fetch('/api/users/'+req.session.user_id);
+    const userInfo = Users.findByPk(req.session.user_id); 
     if(userInfo){
         res.render('profile');
     }
@@ -24,26 +25,35 @@ router.get('/profile', withAuth, async (req, res) => {
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
-    const userInfo = await fetch('/api/users/'+req.session.user_id);
-    if(userInfo){
-        const projects = await fetch('/api/projects/', {
-            body:JSON.stringify({user_id: req.session.user_id}),
-        })
-        if(projects){
-            res.render('dashboard', {
-                user: userInfo,
-                projects: projects
-            });
+    try {
+        const userInfo = Users.findByPk(req.session.user_id);
+        if(userInfo){
+            const projects = Projects.findAll();
+            if(projects){
+                res.status(200).render('dashboard', {
+                    user: userInfo,
+                    projects: projects
+                });
+            }
         }
+    } catch (error) {
+        res.status(500).render('error');
     }
+    
 })
 
 //specific project
 router.get('/project/:id', async (req, res) => {
-    const projectInfo = await fetch('/api/projects/'+req.params.id);
+    const projectInfo = Projects.findOne({
+        where:{
+            user_id: req.params.id
+        }
+    });
     if(projectInfo){
-        const comments = await fetch('/api/comments/', {
-            body: JSON.stringify({projectID: req.params.id})
+        const comments = Comment.findAll({
+            where:{
+                project_id: projectInfo.id
+            }
         })
         if(comments){
             res.render('project', {
