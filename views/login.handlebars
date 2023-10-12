@@ -39,6 +39,7 @@
         </div>
 
         <div class="form-box register">
+            <button class="close-button" onclick="closeRegister()">&times;</button>
             <h2>Registration</h2>
             <form action="#">
                 <div class="input-box">
@@ -178,6 +179,11 @@
             
         }
     }
+
+        function closeRegister () {
+        wrapper.classList.remove('active');
+        console.log('Nice');
+    };
 
     register_email.addEventListener('submit', registerForm);
     register_username.addEventListener('submit', registerForm);
