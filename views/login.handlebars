@@ -84,16 +84,16 @@
     // This should be set dynamically based on the value received from the server
     const autoLogin = true; // Set this value based on the server's response
 
-    {{!-- if (autoLogin) {
+    if (autoLogin) {
         btnPopup.click();
-    } --}}
+    }
     });
 
     const register = document.querySelector('.register')
     const wrapper = document.querySelector('.wrapper');
     const loginLink = document.querySelector('.login-link');
     const registerLink = document.querySelector('.register-link');
-    {{!-- const btnPopup = document.querySelector('.btnLogin-popup'); --}}
+    const btnPopup = document.querySelector('.btnLogin-popup');
     const iconClose = document.querySelector('.icon-close');
 
     registerLink.addEventListener('click', ()=> {
@@ -104,14 +104,14 @@
         wrapper.classList.remove('active');
     });
 
-    {{!-- btnPopup.addEventListener('click', ()=> {
+    btnPopup.addEventListener('click', ()=> {
         wrapper.classList.add('active-popup');
-    }); --}}
+    });
 
-    {{!-- iconClose.addEventListener('click', ()=> {
+    iconClose.addEventListener('click', ()=> {
         wrapper.classList.remove('active-popup');
         wrapper.classList.remove('active');
-    }); --}}
+    });
 
     function closeRegister () {
         wrapper.classList.remove('active');
