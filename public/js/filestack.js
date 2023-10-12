@@ -1,6 +1,7 @@
 const buttonName = "#open_filestack"
 
-const fileStack = require('filestack-js').init(process.env.FS_KEY);
+import * as filestack from 'filestack-js';
+const client = filestack.init(process.env.FS_KEY);
 
 const uploadOptions = {
     onFileUploadFinished: async file => {
@@ -20,7 +21,7 @@ const uploadOptions = {
 }
 
 const Upload = function(){
-    fileStack.picker(uploadOptions).open();
+    client.picker(uploadOptions).open();
 }
 
 document.querySelector(buttonName).addEventListener('submit', function(event){

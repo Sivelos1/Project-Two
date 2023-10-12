@@ -4,6 +4,7 @@ const apiRoutes = require('./api');
 const withAuth = require('../utils/auth');
 const { init } = require('filestack-js');
 const {Users, Projects, Comment, Media} = require('../models');
+const Cookie = require('../utils/cookie');
 
 
 router.get('/', (req, res) => {
@@ -82,15 +83,18 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }
         });
         if(projectInfo){
+            Cookie.set("project", req.params.id);
+            res.status(200).render('edit-project', {
+                projectInfo: projectInfo
+            });
+            /*
             if(projectInfo.user_id === req.session.user_id){
-                res.status(200).render('edit-project', {
-                    projectInfo: projectInfo
-                });
+                
             }
             else{
                 console.log("Access denied; user is not the author of project "+req.params.id+".");
                 res.status(401).redirect('/project/'+req.params.id).json({message:"Access denied."});
-            }
+            }*/
         }
     } catch (error) {
         res.status(500).render('error');
