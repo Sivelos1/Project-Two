@@ -3,7 +3,7 @@ const router = express.Router();
 const apiRoutes = require('./api');
 const withAuth = require('../utils/auth');
 const { init } = require('filestack-js');
-const { Users, Projects, Comment, Media } = require('../models');
+const { Users, Projects, Media } = require('../models');
 const Cookie = require('../utils/cookie');
 
 
@@ -52,18 +52,19 @@ router.get('/project/:id', async (req, res) => {
             }
         });
         if(projectInfo){
-            const comments = Comment.findAll({
+            res.status(200).render('project', {
+                project: projectInfo,
+                isAuthor: (projectInfo.user_id === req.session.user_id),
+                comments: comments
+            })
+            /*const comments = Comment.findAll({
                 where:{
                     project_id: projectInfo.id
                 }
             })
             if(comments){
-                res.status(200).render('project', {
-                    project: projectInfo,
-                    isAuthor: (projectInfo.user_id === req.session.user_id),
-                    comments: comments
-                })
-            }
+                
+            }*/
         }
     } catch (error) {
         res.status(500).render('error');
