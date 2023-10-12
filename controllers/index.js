@@ -42,7 +42,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             }
         }
     } catch (error) {
-        res.status(500).render('error');
+        res.status(500).redirect('error');
     }
     
 })
@@ -109,6 +109,7 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
 
 router.post('/project/new', withAuth, async (req, res) => {
     try {
+        console.log(req.session.user_id);
         const newProj = await Projects.create({
             title:"",
             body:"",
