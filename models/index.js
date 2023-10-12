@@ -13,6 +13,10 @@ Users.hasMany(Projects, {
     onDelete: 'CASCADE',
 });
 
+Projects.belongsTo(Users, {
+    foreignKey: '',
+});
+
 Projects.hasMany(Comment, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE',
@@ -21,6 +25,18 @@ Projects.hasMany(Comment, {
 Projects.hasMany(Media, {
     foreignKey: 'project_id',
     onDelete: 'CASCADE',
+});
+
+Comment.belongsTo(Projects, {
+    foreignKey: 'project_id'
+});
+
+Comment.belongsTo(Users, {
+    foreignKey: 'user_id'
+});
+
+Media.belongsTo(Projects,{
+    foreignKey: 'project_id'
 });
 
 module.exports = { Projects, Media, Users, Comment };

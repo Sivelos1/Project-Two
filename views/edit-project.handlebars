@@ -55,15 +55,10 @@ comment display.
 
 <script>
 
-    
-    document.addEventListener('DOMContentLoaded', (event) => {
-        
-    });
-
-
     const projectBody = document.querySelector('#project-body');
     const easyMDE = new EasyMDE({
         element: projectBody,
+        placeholder: "Write something about your project!"
         maxHeight: "20rem",
         maxWidth: "100%"
         });

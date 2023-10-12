@@ -24,63 +24,36 @@
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        <div id="menu-content" class="menu-content">
+        <div id="menu-content" class="menu-content" style = "width:fit-content;">
             <ul>
-                <li><a href="#" id="addProject">Add Project</a></li>
+                <li><a href="/project/new" id="addProject">Add Project</a></li>
                 <li><a href="#" id="deleteAccount">Delete Account</a></li>
                 <li><a href="#" id="changePassword">Change Password</a></li>
                 <li><a href="#" id="changeInfo">Change Personal Info</a></li>
             </ul>
         </div>
     </div>
+    <div class = "line"></div>
         <div class="portfolio">
-            <h2>Portfolio</h2>
-            <input type="file" id="fileInput">
-            <ul id="fileList">
-                {{#each files}}
-                <li><a href="{{this}}" target="_blank">{{this}}</a></li>
+            <h2>Your Projects</h2>
+            <div>
+                {{#each projects as |project|}}
+                    {{> project-small project}}
                 {{/each}}
-            </ul>
+            </div>
+                
         </div>
 
-        <div class="post">
-            <h2>Share a Post</h2>
-            <textarea id="postContent" placeholder="Write something..."></textarea>
-            <input type="file" id="postFile">
-            <button onclick="sharePost()">Share</button>
-            <ul id="postsList">
-                {{#each posts}}
-                <li>
-                    <p>{{this.content}}</p>
-                    {{#if this.file}}
-                    <a href="{{this.file}}" target="_blank">View Attachment</a>
-                    {{/if}}
-                </li>
-                {{/each}}
-            </ul>
-        </div>
+        
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuButton = document.getElementById('menu-button');
-            const menuContent = document.getElementById('menu-content');
 
-            menuButton.onclick = function () {
-                const isMenuOpen = menuContent.style.display === 'block';
-                menuContent.style.display = isMenuOpen ? 'none' : 'block';
-            };
-
-            
-        });
-
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const source = document.getElementById('profile-template').innerHTML;
             const template = Handlebars.compile(source);
-
+        
             const context = {
                 name: 'John Doe',
                 avatar: 'https://i.pravatar.cc/150',
@@ -95,6 +68,16 @@
             document.getElementById('profile-container').innerHTML = template(context);
         });
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuButton = document.querySelector('#menu-button');
+            const menuContent = document.querySelector('#menu-content');
+            console.log(menuButton);
+            menuButton.addEventListener('click', function(event){
+                event.preventDefault();
+                const isMenuOpen = menuContent.style.display === 'block';
+                menuContent.style.display = isMenuOpen ? 'none' : 'block';
+            });
+        });
         function sharePost() {
             const content = document.getElementById('postContent').value;
             const fileInput = document.getElementById('postFile');

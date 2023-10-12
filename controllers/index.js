@@ -3,7 +3,7 @@ const router = express.Router();
 const apiRoutes = require('./api');
 const withAuth = require('../utils/auth');
 const { init } = require('filestack-js');
-const {Users, Projects, Comment, Media} = require('../models');
+const { Users, Projects, Comment, Media } = require('../models');
 const Cookie = require('../utils/cookie');
 
 
@@ -83,7 +83,7 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }
         });
         if(projectInfo){
-            Cookie.set("project", req.params.id);
+            //Cookie.set("project", req.params.id);
             res.status(200).render('edit-project', {
                 projectInfo: projectInfo
             });
@@ -95,6 +95,28 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
                 console.log("Access denied; user is not the author of project "+req.params.id+".");
                 res.status(401).redirect('/project/'+req.params.id).json({message:"Access denied."});
             }*/
+        }
+    } catch (error) {
+        res.status(500).render('error');
+    }
+    
+})
+
+router.post('/project/new', withAuth, async (req, res) => {
+    try {
+        const newProj = await Projects.create({
+            title:"",
+            body:"",
+            summary:"",
+            user_id: req.session.user_id,
+            status: "",
+            created_at: Date.now,
+        });
+        if(newProj){
+            res.status(200).redirect(`/project/${newProj.id}/edit`);
+        }
+        else{
+            res.status(500).render('error');
         }
     } catch (error) {
         res.status(500).render('error');
