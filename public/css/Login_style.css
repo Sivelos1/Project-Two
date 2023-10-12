@@ -160,3 +160,17 @@
 .login-register p a:hover {
     text-decoration: underline;
 }
+
+.form-box.register {
+    position: relative;
+}
+
+.close-button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: xx-large;
+}
