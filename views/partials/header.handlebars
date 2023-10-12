@@ -16,6 +16,7 @@
     </div>
     <nav class="main-nav">
         <ul>
+            {{#if session.logged_in}}<li><a href="/dashboard">Dashboard</a></li>{{/if}}
             <li><a href="/about">About</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/contact">Contact</a></li>

@@ -44,25 +44,30 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
 //specific project
 router.get('/project/:id', async (req, res) => {
-    const projectInfo = Projects.findOne({
-        where:{
-            user_id: req.params.id
-        }
-    });
-    if(projectInfo){
-        const comments = Comment.findAll({
+    try {
+        const projectInfo = Projects.findOne({
             where:{
-                project_id: projectInfo.id
+                user_id: req.params.id
             }
-        })
-        if(comments){
-            res.render('project', {
-                project: projectInfo,
-                isAuthor: (projectInfo.user_id === req.session.user_id),
-                comments: comments
+        });
+        if(projectInfo){
+            const comments = Comment.findAll({
+                where:{
+                    project_id: projectInfo.id
+                }
             })
+            if(comments){
+                res.status(200).render('project', {
+                    project: projectInfo,
+                    isAuthor: (projectInfo.user_id === req.session.user_id),
+                    comments: comments
+                })
+            }
         }
+    } catch (error) {
+        res.status(500).render('error');
     }
+    
 })
 
 

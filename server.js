@@ -27,6 +27,11 @@ const hbs = exphbs.create({ helpers });
   };
 
 app.use(session(sess));
+//thanks to https://stackoverflow.com/a/57987150
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
