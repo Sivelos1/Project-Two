@@ -15,6 +15,10 @@ router.use('/api', apiRoutes);
 router.get('/login', (req, res) => {
     res.render('login');
 });
+router.get('/register', (req, res) => {
+    res.redirect('login');
+});
+
 router.get('/profile', withAuth, async (req, res) => {
     const userInfo = Users.findByPk(req.session.user_id); 
     if(userInfo){
