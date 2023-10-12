@@ -16,7 +16,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 router.get('/register', (req, res) => {
-    res.redirect('login');
+    res.replace('login');
 });
 
 router.get('/profile', withAuth, async (req, res) => {
@@ -42,7 +42,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             }
         }
     } catch (error) {
-        res.status(500).redirect('error');
+        res.status(500).replace('error');
     }
     
 })
@@ -71,7 +71,7 @@ router.get('/project/:id', async (req, res) => {
             }*/
         }
     } catch (error) {
-        res.status(500).redirect('error');
+        res.status(500).replace('error');
     }
     
 })
@@ -102,7 +102,7 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }*/
         }
     } catch (error) {
-        res.status(500).redirect('error');
+        res.status(500).replace('error');
     }
     
 })
@@ -119,13 +119,13 @@ router.post('/project/new', withAuth, async (req, res) => {
             created_at: Date.now,
         });
         if(newProj){
-            res.status(200).redirect(`/project/${newProj.id}/edit`);
+            res.status(200).replace(`/project/${newProj.id}/edit`);
         }
         else{
-            res.status(500).redirect('error');
+            res.status(500).replace('error');
         }
     } catch (error) {
-        res.status(500).redirect('error');
+        res.status(500).replace('error');
     }
     
 })
