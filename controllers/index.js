@@ -33,7 +33,11 @@ router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userInfo = Users.findByPk(req.session.user_id);
         if(userInfo){
-            const projects = Projects.findAll();
+            const projects = Projects.findAll({
+                where:{
+                    user_id: userInfo.id
+                }
+            });
             if(projects){
                 res.status(200).render('dashboard', {
                     user: userInfo,
