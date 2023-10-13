@@ -31,15 +31,14 @@ router.get('/profile', withAuth, async (req, res) => {
 
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
-        const userInfo = Users.findByPk(req.session.user_id);
+        const userInfo = await Users.findByPk(req.session.user_id);
         if(userInfo){
-            const projects = Projects.findAll({
+            const projects = await Projects.findAll({
                 include:{
                     model:Users,
                 }
             });
             if(projects){
-                console.log(userInfo);
                 res.status(200).render('dashboard', {
                     user: userInfo,
                     projects: projects
