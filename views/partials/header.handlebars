@@ -16,119 +16,15 @@
     </div>
     <nav class="main-nav">
         <ul>
-            {{#if session.logged_in}}<li><a href="/dashboard">Dashboard</a></li>{{/if}}
-            <li><a href="/about">About</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/contact">Contact</a></li>
+            {{#if session.logged_in}}
+              <li><a href="/dashboard">Dashboard</a></li>
+            {{#else}}
+              <li><a href="/login">Log In</a></li>
+            {{/if}}
         </ul>
     </nav>
-
-    <!-- About Us Modal -->
-<div id="aboutModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>About Us</h2>
-    <p>This is a brief summary of our page.</p>
-  </div>
-</div>
-
-<!-- Services Modal -->
-<div id="servicesModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Our Services</h2>
-    <p>Here is a brief description of our services.</p>
-  </div>
-</div>
-
-<!-- Contact Us Modal -->
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Contact Us</h2>
-    <form id="contactForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="reason">Reason for Contacting:</label>
-      <select id="reason" name="reason" required>
-        <option value="general">General Inquiry</option>
-        <option value="feedback">Feedback</option>
-        <option value="support">Technical Support</option>
-        <option value="other">Other</option>
-      </select>
-
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="4" required></textarea>
-
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-</div>
-
 </header>
 
-<script> 
-    // Get the modals and close buttons
-    const aboutModal = document.getElementById('aboutModal');
-    const servicesModal = document.getElementById('servicesModal');
-    const contactModal = document.getElementById('contactModal');
-    const closeBtns = document.querySelectorAll('.close');
-
-    // Function to open the About modal
-    function openAboutModal() {
-    aboutModal.style.display = 'block';
-    }
-
-    // Function to open the Services modal
-    function openServicesModal() {
-    servicesModal.style.display = 'block';
-    }
-
-    // Function to open the Contact modal
-    function openContactModal() {
-    contactModal.style.display = 'block';
-    }
-
-    // Function to close all modals
-    function closeModal() {
-    aboutModal.style.display = 'none';
-    servicesModal.style.display = 'none';
-    contactModal.style.display = 'none';
-    }
-
-    // Event listeners to open the respective modals when the links are clicked
-    document.querySelector('a[href="/about"]').addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent the default link behaviorm i didnt know how to cancel put the route
-    openAboutModal();
-    });
-
-    document.querySelector('a[href="/services"]').addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent the default link behaviorm i didnt know how to cancel put the route
-    openServicesModal();
-    });
-
-    document.querySelector('a[href="/contact"]').addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent the default link behaviorm i didnt know how to cancel put the route
-    openContactModal();
-    });
-
-    // Event listener to close all modals when the close buttons are clicked
-    closeBtns.forEach((btn) => {
-    btn.addEventListener('click', closeModal);
-    });
-
-    // Event listener to close all modals when the overlay is clicked
-    window.addEventListener('click', (event) => {
-    if (event.target === aboutModal || event.target === servicesModal || event.target === contactModal) {
-        closeModal();
-    }
-    });
-
-</script>
 {{!--  cool scrolling function that makes the header transparent when you scroll  --}}
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
