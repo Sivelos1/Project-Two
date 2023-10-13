@@ -34,8 +34,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
         const userInfo = Users.findByPk(req.session.user_id);
         if(userInfo){
             const projects = Projects.findAll({
-                where:{
-                    user_id: userInfo.id
+                include:{
+                    model:Users,
                 }
             });
             if(projects){
