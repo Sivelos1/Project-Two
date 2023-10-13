@@ -114,12 +114,12 @@ router.post('/project/new', withAuth, async (req, res) => {
     try {
         console.log(req.session.user_id);
         const newProj = await Projects.create({
-            title:"",
+            title:"New Project",
             body:"",
             summary:"",
             user_id: req.session.user_id,
             status: "",
-            created_at: Date.now,
+            created_at: Date.now(),
         });
         if(newProj){
             res.status(200).replace(`/project/${newProj.id}/edit`);
