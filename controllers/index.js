@@ -39,6 +39,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 }
             });
             if(projects){
+                console.log(userInfo);
                 res.status(200).render('dashboard', {
                     user: userInfo,
                     projects: projects
