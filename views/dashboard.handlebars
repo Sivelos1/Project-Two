@@ -7,58 +7,61 @@
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
-<body style = "display:block; justify-content:center; margin-top:7.5rem;">
+<body style = "display:flex; justify-content:center; margin-top:7.5rem;">
+    <div style = "display:block">
     <div class="hamburger-menu">
-        <div id="menu-button" class="menu-icon">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+            <div id="menu-button" class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div id="menu-content" class="menu-content" style = "width:fit-content;">
+                <ul>
+                    <li><a href="/project/new" id="addProject">Add Project</a></li>
+                    <li><a href="#" id="deleteAccount">Delete Account</a></li>
+                    <li><a href="#" id="changePassword">Change Password</a></li>
+                    <li><a href="#" id="changeInfo">Change Personal Info</a></li>
+                </ul>
+            </div>
         </div>
-        <div id="menu-content" class="menu-content" style = "width:fit-content;">
-            <ul>
-                <li><a href="/project/new" id="addProject">Add Project</a></li>
-                <li><a href="#" id="deleteAccount">Delete Account</a></li>
-                <li><a href="#" id="changePassword">Change Password</a></li>
-                <li><a href="#" id="changeInfo">Change Personal Info</a></li>
-            </ul>
-        </div>
-    </div>
-    <div>
         <div>
-            <h2>Profile</h2>
             <div>
-                <div style = "display:flex;">
-                    <label>Username:</label>
-                    <pstyle = "padding-left: 1rem;">{{userInfo.username}}</p>
+                <h2>Profile</h2>
+                <div>
+                    <div style = "display:flex;">
+                        <label>Username:</label>
+                        <pstyle = "padding-left: 1rem;">{{userInfo.username}}</p>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style = "display:flex;">
-                    <label>Email:</label>
-                    <p style = "padding-left: 1rem;">{{userInfo.email}}</p>
+                <div>
+                    <div style = "display:flex;">
+                        <label>Email:</label>
+                        <p style = "padding-left: 1rem;">{{userInfo.email}}</p>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <div style = "display:flex;">
-                    <label>Password:</label>
-                    <p style = "padding-left: 1rem;">**********</p>
+                <div>
+                    <div style = "display:flex;">
+                        <label>Password:</label>
+                        <p style = "padding-left: 1rem;">**********</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class = "line"></div>
-        <div class="portfolio">
-            <h2>Your Projects</h2>
-            <div>
-                {{#each projects}}
-                    {{> project-small this}}
-                {{else}}
-                    <div>There doesn't seem to be anything here.</div>
-                {{/each}}
+        <div class = "line"></div>
+            <div class="portfolio">
+                <h2>Your Projects</h2>
+                <div>
+                    {{#each projects}}
+                        {{> project-small this}}
+                    {{else}}
+                        <div>There doesn't seem to be anything here.</div>
+                    {{/each}}
+                </div>
+                    
             </div>
-                
-        </div>
 
+        </div>
+    
         
     </script>
 
