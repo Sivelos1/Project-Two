@@ -54,7 +54,6 @@ comment display.
 <script src="https://unpkg.com/filestack-js@3.x.x"></script>
 
 <script>
-
     const projectBody = document.querySelector('#project-body');
     const easyMDE = new EasyMDE({
         element: projectBody,
@@ -68,4 +67,13 @@ comment display.
     const saveProjectHandler = async function(event){
         event.preventDefault();
     }
+    saveButton.addEventListener('click', saveProjectHandler);
+
+    
+    const uploadButton = document.querySelector('#open_filestack');
+
+    const uploadHandler = async function(event){
+        event.preventDefault();
+    }
+    uploadButton.addEventListener('click', uploadHandler);
 </script>

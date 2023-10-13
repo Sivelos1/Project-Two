@@ -77,9 +77,6 @@ router.get('/project/:id', async (req, res) => {
     
 })
 
-router.get('/projectedit', async (req,res) => {
-    res.render('edit-project');
-})
 
 router.get('/project/:id/edit', withAuth, async (req, res) => {
     try {
@@ -89,7 +86,7 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }
         });
         if(projectInfo){
-            //Cookie.set("project", req.params.id);
+            Cookie.set("project", req.params.id);
             res.status(200).render('edit-project', {
                 projectInfo: projectInfo
             });
