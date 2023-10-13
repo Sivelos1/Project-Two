@@ -60,7 +60,6 @@ router.get('/project/:id', async (req, res) => {
             res.status(200).render('project', {
                 project: projectInfo,
                 isAuthor: (projectInfo.user_id === req.session.user_id),
-                comments: comments
             })
             /*const comments = Comment.findAll({
                 where:{
