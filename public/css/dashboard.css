@@ -163,5 +163,5 @@ input[type="file"] {
 }
 
 .project-display{
-    display:grid;
+    display:flex;
 }
