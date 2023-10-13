@@ -8,16 +8,6 @@
 </head>
 
 <body>
-
-    <div id="profile-container"></div>
-
-    <script id="profile-template" type="text/x-handlebars-template">
-      <div class="profile">
-        <img src="{{avatar}}" alt="{{name}}" class="profile-pic">
-        <h2>{{name}}</h2>
-        <p>{{bio}}</p>
-    </div>
-
     <div class="hamburger-menu">
         <div id="menu-button" class="menu-icon">
             <div class="bar"></div>
@@ -33,12 +23,35 @@
             </ul>
         </div>
     </div>
+    <div>
+        <div>
+            <h2>Profile</h2>
+            <div>
+                <div style = "display:flex;">
+                    <label>Username:</label>
+                    <p> style = "padding-left: 1rem;"{{userInfo.username}}</p>
+                </div>
+            </div>
+            <div>
+                <div style = "display:flex;">
+                    <label>Email:</label>
+                    <p style = "padding-left: 1rem;">{{userInfo.email}}</p>
+                </div>
+            </div>
+            <div>
+                <div style = "display:flex;">
+                    <label>Password:</label>
+                    <p style = "padding-left: 1rem;">**********</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class = "line"></div>
         <div class="portfolio">
             <h2>Your Projects</h2>
             <div>
-                {{#each projects}}
-                    {{> project-small}}
+                {{#each projects as project}}
+                    {{> project-small project}}
                 {{else}}
                     <div>There doesn't seem to be anything here.</div>
                 {{/each}}
@@ -52,23 +65,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const source = document.getElementById('profile-template').innerHTML;
-            const template = Handlebars.compile(source);
-        
-            const context = {
-                name: 'John Doe',
-                avatar: 'https://i.pravatar.cc/150',
-                bio: 'Web Developer with over 5 years of experience.',
-                files: ['/path/to/file1.pdf', '/path/to/project.zip'],
-                posts: [
-                    { content: 'This is a test post.', file: '/path/to/attachment.jpg' },
-                    { content: 'Another post without attachment.' }
-                ]
-            };
-
-            document.getElementById('profile-container').innerHTML = template(context);
-        });
 
         document.addEventListener('DOMContentLoaded', function () {
             const menuButton = document.querySelector('#menu-button');
