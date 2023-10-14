@@ -128,7 +128,7 @@ router.get('/newproject', withAuth, async (req, res) => {
             created_at: Date.now(),
         });
         if(newProj){
-            res.replace('/project/'+newProj.id+'/edit');
+            res.redirect('/project/'+newProj.id+'/edit');
         }
         else{
             res.status(500).replace('error');
