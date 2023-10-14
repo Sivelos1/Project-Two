@@ -76,8 +76,8 @@ comment display.
 
     var info = fetch(`/api/projects/${projectID}`).then((response) => {
         console.log(response);
-        var info = JSON.stringify(response.body);
-        console.log(info);
+        var j = JSON.stringify(response.body);
+        console.log(j);
     });
 
     const saveButton = document.querySelector('#save');
