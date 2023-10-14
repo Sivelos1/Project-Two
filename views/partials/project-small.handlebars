@@ -32,5 +32,15 @@ Ideas:
 </button>
 
 <script>
-    document.querySelector()
+    const body = document.querySelector(".project-body");
+    body.addEventListener('click', function(event){
+        event.preventDefault();
+        const id = document.querySelector("#id").textContent.trim();
+        if(id){
+            window.location.replace(`project/${id}`);
+        }
+        else{
+            alert("Couldn't locate project!")
+        }
+    });
 </script>
