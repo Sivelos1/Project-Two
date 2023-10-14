@@ -75,8 +75,7 @@ comment display.
     const projectID = identifyProject();
 
     var info = fetch(`/api/projects/${projectID}`).then((response) => {
-        console.log(response);
-        var j = JSON.stringify(response.body);
+        var j = JSON.stringify(response.text);
         console.log(j);
     });
 
