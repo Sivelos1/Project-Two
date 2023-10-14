@@ -46,17 +46,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 res.status(200).render('dashboard', {
                     user: userInfo,
                     projects: projects,
-                    helpers:{
-                        GetUserName(id){
-                            var result = "N/A";
-                            const user = Users.findByPk(id);
-                            if(user){
-                                result = user.username;
-                            }
-                            console.log(result);
-                            return result;
-                        }
-                    }
                 });
             }
         }
@@ -105,7 +94,6 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
             }
         });
         if(projectInfo){
-            Cookie.set("project", req.params.id);
             res.status(200).render('edit-project', {
                 projectInfo: projectInfo
             });
