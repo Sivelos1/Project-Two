@@ -78,7 +78,7 @@ comment display.
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
-        var r = JSON.parse(response);
+        var r = JSON.stringify(response);
         console.log(r);
     });
 
