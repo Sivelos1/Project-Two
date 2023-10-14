@@ -6,6 +6,7 @@ const GetUserName = function(id){
     if(user){
         result = user.username;
     }
+    console.log(result);
     return result;
 }
 

@@ -79,12 +79,6 @@
                 menuContent.style.display = isMenuOpen ? 'none' : 'block';
             });
         });
-        
-        const addProj = document.querySelector('#addProject');
-        addProj.addEventListener('click', function(event){
-            event.preventDefault();
-            const response = fetch('/project/new');
-        });
     </script>
 
 
