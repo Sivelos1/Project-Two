@@ -128,8 +128,7 @@ router.get('/newproject', withAuth, async (req, res) => {
             created_at: Date.now(),
         });
         if(newProj){
-            document.location.replace('/project/'+newProj.id+'/edit');
-            res.status(200).json(newProj);
+            res.status(200).json(newProj).replace('/project/'+newProj.id+'/edit');
         }
         else{
             res.status(500).replace('error');
