@@ -78,6 +78,9 @@ router.get('/project/:id', async (req, res) => {
                 
             }*/
         }
+        else{
+            document.location.replace('error');
+        }
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
