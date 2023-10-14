@@ -46,6 +46,7 @@ router.post('/', async (req, res) => {
         var projInfo = await Projects.create({
             title: req.body.title,
             body: req.body.body,
+            summary: req.body.summary,
             user_id: req.body.user_id,
             status: req.body.status,
             created_at: req.body.created_at
@@ -65,6 +66,7 @@ router.put('/:id', async (req, res) => {
             await projInfo.update({
                 title: req.body.title || projInfo.title,
                 body: req.body.body || projInfo.body,
+                summary: req.body.summary || projInfo.summary,
                 user_id: req.body.user_id || projInfo.user_id,
                 status: req.body.status || projInfo.status,
                 created_at: req.body.created_at || projInfo.created_at
