@@ -21,7 +21,7 @@ comment display.
 <div style = "margin-top: 7.5rem; display:flex; justify-content:center">
     <div>
         <div style = "display:flex;justify-content:space-between;">
-            <h2>Title</h2>
+            <h2>{{title}}</h2>
             <button class = "btn" style = "margin:0.1rem;">Save</button>
         </div>
         <div class = "line"></div>
@@ -61,6 +61,19 @@ comment display.
         maxHeight: "20rem",
         maxWidth: "100%"
     });
+
+    const identifyProject = function(){
+        const url = window.url;
+        s1 = url.indexOf('project/');
+        if(s1 > -1){
+            s2 = url.lastIndexOf('/edit');
+            result = url.slice(s1+8, s2);
+            console.log(result);
+            return result;
+        }
+    }
+
+    identifyProject();
 
     const saveButton = document.querySelector('#save');
 
