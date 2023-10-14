@@ -45,7 +45,18 @@ router.get('/dashboard', withAuth, async (req, res) => {
             if(projects){
                 res.status(200).render('dashboard', {
                     user: userInfo,
-                    projects: projects
+                    projects: projects,
+                    helpers:{
+                        GetUserName(id){
+                            var result = "N/A";
+                            const user = Users.findByPk(id);
+                            if(user){
+                                result = user.username;
+                            }
+                            console.log(result);
+                            return result;
+                        }
+                    }
                 });
             }
         }
