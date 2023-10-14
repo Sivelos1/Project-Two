@@ -3,10 +3,20 @@
        
        Ideas: 
               - Maybe include an "edit" button if the user is the project's author?  --}}
+<link type = "style" href="/public/css/jass.css">
+<link type = "style" href="/public/css/style.css">
+<link type = "style" href="/public/css/dashboard.css">
 
 <div style = "margin-top:7.5rem">
 
-<h2>{{project.title}}</h2>
-<img>{{project.thumbnail}}</img>
-<p>{{project.body}}</p>
+       <div style = "display:flex; justify-content:space-between">
+              <h2>{{title}}</h2>
+              <div>
+                     By {{GetUserName user_id}}
+              </div>
+       </div>
+       <div class = "line"></div>
+       <img>{{thumbnail}}</img>
+       <p>{{body}}</p>
+       <div class = "line"></div>
 </div>
