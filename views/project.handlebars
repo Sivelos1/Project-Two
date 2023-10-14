@@ -7,16 +7,18 @@
 <link type = "style" href="/public/css/style.css">
 <link type = "style" href="/public/css/dashboard.css">
 
-<div style = "margin-top:7.5rem; width: 50%">
-
-       <div style = "display:flex; justify-content:space-between">
-              <h2>{{project.title}}</h2>
-              <a>
-                     By {{GetUserName project.user_id}}
-              </a>
+<div style = "margin-top:7.5rem;display:flex;justify-content:center">
+       <div style = "min-width:50%">
+       
+              <div style = "display:flex; justify-content:space-between">
+                     <h2>{{project.title}}</h2>
+                     <a>
+                            By {{GetUserName project.user_id}}
+                     </a>
+              </div>
+              <div class = "line"></div>
+              <img>{{project.thumbnail}}</img>
+              <p>{{project.body}}</p>
+              <div class = "line"></div>
        </div>
-       <div class = "line"></div>
-       <img>{{project.thumbnail}}</img>
-       <p>{{project.body}}</p>
-       <div class = "line"></div>
 </div>
