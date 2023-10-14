@@ -78,7 +78,8 @@ comment display.
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
-        console.log(response);
+        var r = JSON.parse(response);
+        console.log(r);
     });
 
     const saveButton = document.querySelector('#save');
