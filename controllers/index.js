@@ -119,7 +119,7 @@ router.get('/project/:id/edit', withAuth, async (req, res) => {
 router.post('/project/new', withAuth, async (req, res) => {
     try {
         console.log("please for gods sake");
-        const newProj = await Projects.build({
+        const newProj = await Projects.create({
             title:"New Project",
             body:"",
             summary:"",
@@ -127,15 +127,9 @@ router.post('/project/new', withAuth, async (req, res) => {
             status: "",
             created_at: Date.now(),
         });
-        await newProj.save();
-        console.log(newProj);
-        if(newProj){
-            document.location.replace('/project/'+newProj.id+'/edit');
-            res.status(200).json(newProj);
-        }
-        else{
-            res.status(500).replace('error');
-        }
+        
+        document.location.replace('/project/'+newProj.id+'/edit');
+        res.status(200).json(newProj);
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
