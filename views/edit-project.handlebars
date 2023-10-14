@@ -21,7 +21,7 @@ comment display.
 <div style = "margin-top: 7.5rem; display:flex; justify-content:center">
     <div>
         <div style = "display:flex;justify-content:space-between;">
-            <h2>{{title}}</h2>
+            <h2>{{projectInfo.title}}</h2>
             <button id = "save" class = "btn" style = "margin:0.1rem;">Save</button>
         </div>
         <div class = "line"></div>
@@ -75,7 +75,8 @@ comment display.
     const projectID = identifyProject();
 
     var info = fetch(`/api/projects/${projectID}`).then((response) => {
-        var info = JSON.parse(response);
+        console.log(response.body);
+        var info = JSON.parse(response.body);
         console.log(info);
     });
 
