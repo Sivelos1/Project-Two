@@ -125,6 +125,7 @@ router.post('/project/new', withAuth, async (req, res) => {
             status: "",
             created_at: Date.now(),
         });
+        res.render('edit-project');
         if(newProj){
             res.status(200).replace(`/project/${newProj.id}/edit`);
         }
