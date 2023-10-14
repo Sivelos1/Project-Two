@@ -43,10 +43,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 }
             });
             if(projects){
-                const p = projects.map((project) => project.get({plain:true}))
                 res.status(200).render('dashboard', {
                     user: userInfo,
-                    projects: p
+                    projects: projects
                 });
             }
         }
