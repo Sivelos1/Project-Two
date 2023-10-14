@@ -63,7 +63,7 @@ comment display.
     });
 
     const identifyProject = function(){
-        const url = window.url;
+        const url = window.location.href;
         s1 = url.indexOf('project/');
         if(s1 > -1){
             s2 = url.lastIndexOf('/edit');
