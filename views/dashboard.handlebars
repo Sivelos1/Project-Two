@@ -40,7 +40,7 @@
                 </div>
                 <div id="menu-content" class="menu-content" style = "width:fit-content;">
                     <ul>
-                        <li><a href="/project/new" id="addProject">Add Project</a></li>
+                        <li><a id="addProject">Add Project</a></li>
                         <li><a href="#" id="deleteAccount">Delete Account</a></li>
                         <li><a href="#" id="changePassword">Change Password</a></li>
                         <li><a href="#" id="changeInfo">Change Personal Info</a></li>
@@ -69,7 +69,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             const menuButton = document.querySelector('#menu-button');
             const menuContent = document.querySelector('#menu-content');
@@ -80,19 +79,12 @@
                 menuContent.style.display = isMenuOpen ? 'none' : 'block';
             });
         });
-        function sharePost() {
-            const content = document.getElementById('postContent').value;
-            const fileInput = document.getElementById('postFile');
-            const file = fileInput.files.length > 0 ? fileInput.files[0].name : null;
-
-            const post = { content, file };
-            const source = '<li><p>{{content}}</p>{{#if file}}<a href="{{file}}" target="_blank">View Attachment</a>{{/if}}</li>';
-            const template = Handlebars.compile(source);
-
-            document.getElementById('postsList').innerHTML += template(post);
-            document.getElementById('postContent').value = '';  // Clear the textarea
-            fileInput.value = '';  // Clear the file input
-        }
+        
+        const addProj = document.querySelector('#addProject');
+        addProj.addEventListener('click', function(event){
+            event.preventDefault();
+            const response = await fetch('/project/new');
+        });
     </script>
 
 
