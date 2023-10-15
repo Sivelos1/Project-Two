@@ -62,7 +62,8 @@ router.get('/project/:id', async (req, res) => {
         const projectInfo = Projects.findOne({
             where:{
                 user_id: req.params.id
-            }
+            },
+            raw:true
         });
         if(projectInfo){
             res.status(200).render('project', {

@@ -10,9 +10,9 @@
 <div style = "margin-top:7.5rem;display:flex;justify-content:center">
        <div style = "width:50%">
               <div style = "display:flex; justify-content:space-between">
-                     <h2>Title</h2>
+                     <h2>{{project.title}}</h2>
                      <a>
-                            By So and So
+                            By {{GetUserName project.user_id}}
                      </a>
               </div>
               <div style = "display:flex;justify-content:space-between">
@@ -25,7 +25,7 @@
               <div style = "background-color: gray; height:20rem;overflow:hidden; border-radius:0.5rem;">
                      <img></img>
               </div>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore minus consectetur quibusdam necessitatibus voluptatibus rerum animi ab optio itaque corporis? Totam libero dolorum, possimus laborum sequi omnis corporis minima odit.</p>
+              <p>{{project.body}}</p>
               <div class = "line"></div>
        </div>
 </div>
