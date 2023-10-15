@@ -40,7 +40,7 @@ comment display.
                     <button class = "btn" id = "open_filestack">Upload</button>
                 </div>
                 <div class = "mediaholder">
-                    {{#each media as |this|}}
+                    {{#each media}}
                         {{> media this}}
                     {{/each}}
                 </div>
@@ -79,7 +79,7 @@ comment display.
         headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
         var r = JSON.stringify(response);
-        console.log(r);
+        console.log(info);
     });
 
     const saveButton = document.querySelector('#save');
