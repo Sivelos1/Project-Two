@@ -54,7 +54,11 @@ comment display.
 <script src="https://unpkg.com/filestack-js@3.x.x"></script>
 
 <script>
+    
+    const saveButton = document.querySelector('#save');
     const projectBody = document.querySelector('#project-body');
+    const projectTitle = document.querySelector('#project-title');
+
     const easyMDE = new EasyMDE({
         element: projectBody,
         placeholder: "Write something about your project!",
@@ -71,21 +75,37 @@ comment display.
             return result * 1;
         }
     }
+    
+    document.addEventListener('DOMContentLoaded', function(event){
+        const projectID = identifyProject();
+        var info = fetch('/api/projects/'+projectID, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(response => response.text()).then(text => {
+            f = JSON.parse(text);
+            easyMDE.value(f.body);
+            projectTitle.value = f.title;
+        });
+    })
 
-    const projectID = identifyProject();
-
-    var info = fetch('/api/projects/'+projectID, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    }).then(response => response.text()).then(text => {
-        f = JSON.parse(text);
-        console.log(f);
-    });
-
-    const saveButton = document.querySelector('#save');
 
     const saveProjectHandler = async function(event){
         event.preventDefault();
+        const projectID = identifyProject();
+        var saved = await fetch('/api/projects/'+projectID, {
+            method: 'PUT',
+            body: JSON.stringify({
+                title: projectTitle.value.trim(),
+                body: easyMDE.value(),
+            }),
+            headers: { 'Content-Type': 'application/json' },
+        })
+        if(saved.ok){
+            document.location.reload();
+        }
+        else{
+            alert("Problem saving project. Please try again later.");
+        }
     }
     saveButton.addEventListener('click', saveProjectHandler);
 
