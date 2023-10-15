@@ -59,9 +59,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 //specific project
 router.get('/project/:id', async (req, res) => {
     try {
-        const projectInfo = Projects.findByPk(req.params.id, {
-            raw:true
-        });
+        const projectInfo = Projects.findByPk(req.params.id);
         if(projectInfo){
             res.status(200).render('project', {
                 project: projectInfo,
