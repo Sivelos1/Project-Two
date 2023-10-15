@@ -33,7 +33,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userInfo = await Users.findByPk(req.session.user_id);
         if(userInfo){
-            console.log(helpers.GetUserName(userInfo.user_id));
             const projects = await Projects.findAll({
                 raw:true,
                 include:{

@@ -10,6 +10,14 @@ const GetUserName = function(id){
     return result;
 }
 
+const Censor = function(string){
+    var result = "";
+    for (let index = 0; index < string.length; index++) {
+        result += "*";
+    }
+    return result;
+}
+
 module.exports = {
-    GetUserName,
+    GetUserName, Censor
 }
