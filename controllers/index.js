@@ -5,6 +5,9 @@ const withAuth = require('../utils/auth');
 const { init } = require('filestack-js');
 const {Users, Projects, Comment, Media} = require('../models');
 
+router.get('/register', (req, res) => {
+    res.render('registerAccount');
+});
 
 router.get('/', (req, res) => {
     res.render('home');
