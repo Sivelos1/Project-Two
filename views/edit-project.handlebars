@@ -78,8 +78,8 @@ comment display.
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
-        console.log(response);
-        var r = JSON.parse(response);
+        console.log(response.json());
+        var r = JSON.parse(response.json());
         console.log(r);
     });
 
