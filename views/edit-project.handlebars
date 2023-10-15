@@ -74,12 +74,12 @@ comment display.
 
     const projectID = identifyProject();
 
-    var info = fetch('/api/projects/'+projectID+'?format=json', {
+    var info = fetch('/api/projects/'+projectID, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
         console.log(response);
-        var r = JSON.stringify(response);
+        var r = JSON.parse(response);
         console.log(r);
     });
 
