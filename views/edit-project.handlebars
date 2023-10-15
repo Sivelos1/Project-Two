@@ -74,12 +74,13 @@ comment display.
 
     const projectID = identifyProject();
 
-    var info = fetch(`/api/projects/${projectID}`, {
+    var info = fetch('/api/projects/'+projectID+'?format=json', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
+        console.log(response);
         var r = JSON.stringify(response);
-        console.log(info);
+        console.log(r);
     });
 
     const saveButton = document.querySelector('#save');
