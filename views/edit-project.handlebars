@@ -30,6 +30,11 @@ comment display.
                 <label class = "field-label">Title</label>
                 <input type = "text" id = "project-title">
             </div>
+            
+            <div class = "p1">
+                <label class = "field-label">Summary</label>
+                <input type = "text" id = "project-summary">
+            </div>
             <div class = "p1">
                 <textarea id = "project-body" style = "width: 100%"></textarea>
             </div>
@@ -57,6 +62,7 @@ comment display.
     
     const saveButton = document.querySelector('#save');
     const projectBody = document.querySelector('#project-body');
+    const projectSummary = document.querySelector('#project-summary');
     const projectTitle = document.querySelector('#project-title');
 
     const easyMDE = new EasyMDE({
@@ -85,6 +91,7 @@ comment display.
             f = JSON.parse(text);
             easyMDE.value(f.body);
             projectTitle.value = f.title;
+            projectSummary.value = f.summary;
         });
     })
 
@@ -96,6 +103,7 @@ comment display.
             method: 'PUT',
             body: JSON.stringify({
                 title: projectTitle.value.trim(),
+                summary: projectSummary.value.trim(),
                 body: easyMDE.value(),
             }),
             headers: { 'Content-Type': 'application/json' },
