@@ -77,7 +77,10 @@ comment display.
     var info = fetch('/api/projects/'+projectID, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-    }).then(response => response.text()).then(text => console.log(text));
+    }).then(response => response.text()).then(text => {
+        f = JSON.parse(text);
+        console.log(f);
+    });
 
     const saveButton = document.querySelector('#save');
 
