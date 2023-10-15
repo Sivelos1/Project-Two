@@ -59,20 +59,12 @@ router.get('/dashboard', withAuth, async (req, res) => {
 //specific project
 router.get('/project/:id', async (req, res) => {
     try {
-        const projectInfo = Projects.findByPk(req.params.id);
+        const projectInfo = await Projects.findByPk(req.params.id);
         if(projectInfo){
             res.status(200).render('project', {
                 project: projectInfo.get({plain:true}),
                 isAuthor: (projectInfo.user_id !== req.session.user_id), //i dont know why this boolean needs to be flipped but for whatever reason it only works properly if its flipped
             })
-            /*const comments = Comment.findAll({
-                where:{
-                    project_id: projectInfo.id
-                }
-            })
-            if(comments){
-                
-            }*/
         }
         else{
             document.location.replace('error');
