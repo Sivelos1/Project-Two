@@ -62,7 +62,7 @@ router.get('/project/:id', async (req, res) => {
         const projectInfo = Projects.findByPk(req.params.id);
         if(projectInfo){
             res.status(200).render('project', {
-                project: projectInfo,
+                project: projectInfo.get({plain:true}),
                 isAuthor: (projectInfo.user_id !== req.session.user_id), //i dont know why this boolean needs to be flipped but for whatever reason it only works properly if its flipped
             })
             /*const comments = Comment.findAll({
