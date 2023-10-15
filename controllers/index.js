@@ -62,13 +62,12 @@ router.get('/project/:id', async (req, res) => {
         const projectInfo = Projects.findOne({
             where:{
                 user_id: req.params.id
-            },
-            raw:true
+            }
         });
         if(projectInfo){
             res.status(200).render('project', {
-                project: projectInfo,
-                isAuthor: (projectInfo.user_id !== req.session.user_id),
+                project: projectInfo.get({plain:true}),
+                isAuthor: (projectInfo.user_id !== req.session.user_id), //i dont know why this boolean needs to be flipped but for whatever reason it only works properly if its flipped
             })
             /*const comments = Comment.findAll({
                 where:{
