@@ -63,7 +63,7 @@ router.get('/project/:id', async (req, res) => {
         if(projectInfo){
             res.status(200).render('project', {
                 project: projectInfo.get({plain:true}),
-                isAuthor: (projectInfo.user_id !== req.session.user_id), //i dont know why this boolean needs to be flipped but for whatever reason it only works properly if its flipped
+                isAuthor: (projectInfo.user_id === req.session.user_id),
             })
         }
         else{
