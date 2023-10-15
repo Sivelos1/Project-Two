@@ -4,7 +4,7 @@ const apiRoutes = require('./api');
 const withAuth = require('../utils/auth');
 const { init } = require('filestack-js');
 const { Users, Projects, Media } = require('../models');
-const Cookie = require('../utils/cookie');
+const helpers = require('../utils/helpers');
 
 
 router.get('/', (req, res) => {
@@ -33,6 +33,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const userInfo = await Users.findByPk(req.session.user_id);
         if(userInfo){
+            console.log(helpers.GetUserName(userInfo.user_id));
             const projects = await Projects.findAll({
                 raw:true,
                 include:{
@@ -44,7 +45,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             });
             if(projects){
                 res.status(200).render('dashboard', {
-                    user: userInfo,
+                    user: userInfo.get({plain:true}),
                     projects: projects,
                 });
             }
