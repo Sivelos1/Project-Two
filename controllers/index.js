@@ -79,23 +79,22 @@ router.get('/project/:id', async (req, res) => {
 
 router.get('/project/:id/edit', withAuth, async (req, res) => {
     try {
-        const projectInfo = Projects.findOne({
+        const projectInfo = await Projects.findOne({
             where:{
                 user_id: req.params.id
             }
         });
         if(projectInfo){
-            res.status(200).render('edit-project', {
-                projectInfo: projectInfo
-            });
-            /*
             if(projectInfo.user_id === req.session.user_id){
                 
+                res.status(200).render('edit-project', {
+                    projectInfo: projectInfo.get({plain:true})
+                });
             }
             else{
                 console.log("Access denied; user is not the author of project "+req.params.id+".");
                 res.status(401).redirect('/project/'+req.params.id).json({message:"Access denied."});
-            }*/
+            }
         }
     } catch (error) {
         console.log(error);
