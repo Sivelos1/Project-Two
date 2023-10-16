@@ -23,10 +23,15 @@
   ## Usage
 
   Head over to the heroku app link: https://project-two-myfolio-49405d36a478.herokuapp.com/ . 
+  ![Splash Page](public/images/screen1.png)
   Register with a chosen username, email, and password, and click submit. 
-  Login with your registered account. 
-  Use the burger menu to select add project. 
-  Upload your project info, screenshots, etc. 
+  ![Registration](public/images/screen2.png)
+  Login with your registered account.
+  ![Login](public/images/screen3.png)
+  Use the burger menu to select add project.
+  ![Opened Burger](public/images/screen4.png) 
+  Upload your project info, screenshots, etc.
+  ![Project Page](public/images/screen5.png)
   You can search for other users and projects and comment on them with praise, feedback, etc.
 
   ## License
